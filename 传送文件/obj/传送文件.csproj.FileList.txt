@@ -1,0 +1,8 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\传送文件.Properties.Resources.resources
+obj\Debug\传送文件.Sender.resources
+obj\Debug\传送文件.csproj.GenerateResource.Cache
+bin\Debug\传送文件.exe
+bin\Debug\传送文件.pdb
+obj\Debug\传送文件.exe
+obj\Debug\传送文件.pdb
