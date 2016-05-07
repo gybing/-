@@ -108,7 +108,7 @@ namespace 接收文件
             string methodName = sf.GetMethod().Name;
             int lineNo = sf.GetFileLineNumber();
             int colNo = sf.GetFileColumnNumber();
-            Logs.Create(str, fileName + " : " + assName + "." + typeName + "." + methodName + "(" + lineNo + "行" + colNo + "列)");
+            Logs.Create(str, fileName + " : " + assName + "." + typeName + "=>" + methodName + "(" + lineNo + "行" + colNo + "列)");
             MessageBox.Show("发生应用程序致命错误，请及时联系系统管理员！", "应用程序错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -136,7 +136,7 @@ namespace 接收文件
             string methodName = sf.GetMethod().Name;
             int lineNo = sf.GetFileLineNumber();
             int colNo = sf.GetFileColumnNumber();
-            Logs.Create(str, fileName + " : " + assName + "." + typeName + "." + methodName + "(" + lineNo + "行" + colNo + "列)");
+            Logs.Create(str, fileName + " : " + assName + "." + typeName + "=>" + methodName + "(" + lineNo + "行" + colNo + "列)");
             MessageBox.Show("发生应用程序线程致命错误，请及时联系系统管理员！", "线程错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }

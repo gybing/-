@@ -4,3 +4,29 @@
 
 [16:23:05]监听成功！
 
+[22:42:23]应用程序错误:System.ArgumentException: 路径中具有非法字符。
+   在 KellFileTransfer.FileUploader.Listen(Object o) 位置 E:\soft\传送文件\FileTransfer\FileTransfer.cs:行号 223
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart(Object obj),应用程序状态：终止
+【出错位置】：E:\soft\传送文件\接收文件\Program.cs : 接收文件, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.接收文件.Program.CurrentDomain_UnhandledException(102行13列)
+
+[22:42:27]成功接收到文件：F:\Backup\GET /favicon.ico HTTP/1.1
+Host: kell530.oicp.io
+Connection: Keep-Alive
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0
+Accept-Encoding: gzip, deflate
+
+
+
+[22:42:46]服务程序已启动.
+
+[22:42:46]开始监听...
+
+[22:42:46]监听成功！
+
+[23:32:25]应用程序错误:System.ArgumentException: 路径中具有非法字符。
+   在 KellFileTransfer.FileUploader.Listen(Object o) 位置 E:\soft\传送文件\FileTransfer\FileTransfer.cs:行号 223
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart(Object obj),应用程序状态：终止
+【出错位置】：E:\soft\传送文件\接收文件\Program.cs : 接收文件, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.接收文件.Program.CurrentDomain_UnhandledException(102行13列)
+

@@ -1,0 +1,13 @@
+﻿正在安装程序集“E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe
+   logfile = E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.InstallLog
+正在安装服务 文件接收服务...
+已成功安装服务 文件接收服务。
+正在日志 Application 中创建 EventLog 源 文件接收服务...
+正在提交程序集“E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe
+   logfile = E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.InstallLog

@@ -1,0 +1,10 @@
+E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe.config
+E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.exe
+E:\soft\传送文件\FileReceiveService\bin\Debug\FileReceiveService.pdb
+E:\soft\传送文件\FileReceiveService\bin\Debug\KellFileTransfer.dll
+E:\soft\传送文件\FileReceiveService\bin\Debug\KellFileTransfer.pdb
+E:\soft\传送文件\FileReceiveService\obj\x86\Debug\FileReceiveService.csprojResolveAssemblyReference.cache
+E:\soft\传送文件\FileReceiveService\obj\x86\Debug\FileReceiveService.ProjectInstaller.resources
+E:\soft\传送文件\FileReceiveService\obj\x86\Debug\FileReceiveService.csproj.GenerateResource.Cache
+E:\soft\传送文件\FileReceiveService\obj\x86\Debug\FileReceiveService.exe
+E:\soft\传送文件\FileReceiveService\obj\x86\Debug\FileReceiveService.pdb

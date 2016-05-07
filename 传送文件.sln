@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadClientApp", "Downlo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadServerApp", "DownloadServer\DownloadServerApp.csproj", "{64AB9342-9F95-4186-9603-724F0537A7FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReceiveService", "FileReceiveService\FileReceiveService.csproj", "{23D6C735-F373-4AB3-BA8A-F254266C78E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,16 @@ Global
 		{64AB9342-9F95-4186-9603-724F0537A7FF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{64AB9342-9F95-4186-9603-724F0537A7FF}.Release|x86.ActiveCfg = Release|x86
 		{64AB9342-9F95-4186-9603-724F0537A7FF}.Release|x86.Build.0 = Release|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Debug|x86.ActiveCfg = Debug|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Debug|x86.Build.0 = Debug|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Release|Any CPU.ActiveCfg = Release|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Release|x86.ActiveCfg = Release|x86
+		{23D6C735-F373-4AB3-BA8A-F254266C78E8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
