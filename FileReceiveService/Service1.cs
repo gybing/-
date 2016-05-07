@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.ServiceProcess;
 using System.Text;
 using System.Net;
+using System.Timers;
 
 namespace FileReceiveService
 {
@@ -21,7 +22,8 @@ namespace FileReceiveService
         protected override void OnStart(string[] args)
         {
             Logs.Create("开始启动监听服务...");
-
+            Timer timer1 = new Timer(30000);
+            timer1.Elapsed += new ElapsedEventHandler(timer1_Elapsed);
             IPAddress LocalIP = IPAddress.Loopback;
             int LocalPort = 8000;
             string dir = KellFileTransfer.Common.GetAppSettingConfig("dir");
@@ -41,6 +43,51 @@ namespace FileReceiveService
             {
                 Logs.Create("监听失败！");
             }
+        }
+
+        void timer1_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Timer timer1 = sender as Timer;
+            timer1.Stop();
+            string defaultShutdownTime = KellFileTransfer.Common.GetAppSettingConfig("defaultShutdownTime");
+            if (!string.IsNullOrEmpty(defaultShutdownTime))
+            {
+                try
+                {
+                    int hour = 0;
+                    int minute = 0;
+                    string[] hm = defaultShutdownTime.Split(':');
+                    if (hm.Length == 2)
+                    {
+                        hour = Convert.ToInt32(hm[0]);
+                        minute = Convert.ToInt32(hm[1]);
+                    }
+                    else
+                    {
+                        hour = Convert.ToInt32(hm[0]);
+                    }
+                    if (DateTime.Now.Hour == hour && DateTime.Now.Minute == minute)
+                    {
+                        using (Process p = new Process())
+                        {
+                            p.StartInfo.FileName = "cmd.exe";
+                            p.StartInfo.UseShellExecute = false;
+                            p.StartInfo.RedirectStandardInput = true;
+                            p.StartInfo.RedirectStandardOutput = true;
+                            p.StartInfo.RedirectStandardError = true;
+                            p.StartInfo.CreateNoWindow = true;
+                            p.Start();
+                            p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时候留待取消关机
+                            p.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logs.Create("定时轮询自动关机时失败：" + ex.Message);
+                }
+            }
+            timer1.Start();
         }
 
         void FileTransfer_ReceiveFinished(object sender, KellFileTransfer.ReceiveFinishArgs e)
