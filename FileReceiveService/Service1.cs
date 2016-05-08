@@ -18,12 +18,14 @@ namespace FileReceiveService
         }
 
         KellFileTransfer.ReceiveListenerArgs rl;
+        Timer timer1;
 
         protected override void OnStart(string[] args)
         {
             Logs.Create("开始启动监听服务...");
-            Timer timer1 = new Timer(30000);
+            timer1 = new Timer(30000);//关机轮询间隔时间为30秒
             timer1.Elapsed += new ElapsedEventHandler(timer1_Elapsed);
+            timer1.Start();
             IPAddress LocalIP = IPAddress.Loopback;
             int LocalPort = 8000;
             string dir = KellFileTransfer.Common.GetAppSettingConfig("dir");
@@ -47,44 +49,48 @@ namespace FileReceiveService
 
         void timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Timer timer1 = sender as Timer;
             timer1.Stop();
-            string defaultShutdownTime = KellFileTransfer.Common.GetAppSettingConfig("defaultShutdownTime");
-            if (!string.IsNullOrEmpty(defaultShutdownTime))
+            string autoShutdown = KellFileTransfer.Common.GetAppSettingConfig("autoShutdown");
+            if (!string.IsNullOrEmpty(autoShutdown) && autoShutdown == "1")
             {
-                try
+                string defaultShutdownTime = KellFileTransfer.Common.GetAppSettingConfig("defaultShutdownTime");
+                if (!string.IsNullOrEmpty(defaultShutdownTime))
                 {
-                    int hour = 0;
-                    int minute = 0;
-                    string[] hm = defaultShutdownTime.Split(':');
-                    if (hm.Length == 2)
+                    try
                     {
-                        hour = Convert.ToInt32(hm[0]);
-                        minute = Convert.ToInt32(hm[1]);
-                    }
-                    else
-                    {
-                        hour = Convert.ToInt32(hm[0]);
-                    }
-                    if (DateTime.Now.Hour == hour && DateTime.Now.Minute == minute)
-                    {
-                        using (Process p = new Process())
+                        int hour = 0;
+                        int minute = 0;
+                        string[] hm = defaultShutdownTime.Split(':');
+                        if (hm.Length == 2)
                         {
-                            p.StartInfo.FileName = "cmd.exe";
-                            p.StartInfo.UseShellExecute = false;
-                            p.StartInfo.RedirectStandardInput = true;
-                            p.StartInfo.RedirectStandardOutput = true;
-                            p.StartInfo.RedirectStandardError = true;
-                            p.StartInfo.CreateNoWindow = true;
-                            p.Start();
-                            p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时候留待取消关机
-                            p.Close();
+                            hour = Convert.ToInt32(hm[0]);
+                            minute = Convert.ToInt32(hm[1]);
+                        }
+                        else
+                        {
+                            hour = Convert.ToInt32(hm[0]);
+                        }
+                        if (DateTime.Now.Hour == hour && DateTime.Now.Minute == minute)
+                        {
+                            Logs.Create("本服务尝试自动关机...");
+                            using (Process p = new Process())
+                            {
+                                p.StartInfo.FileName = "cmd.exe";
+                                p.StartInfo.UseShellExecute = false;
+                                p.StartInfo.RedirectStandardInput = true;
+                                p.StartInfo.RedirectStandardOutput = true;
+                                p.StartInfo.RedirectStandardError = true;
+                                p.StartInfo.CreateNoWindow = true;
+                                p.Start();
+                                p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时候留待取消关机
+                                p.Close();
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Logs.Create("定时轮询自动关机时失败：" + ex.Message);
+                    catch (Exception ex)
+                    {
+                        Logs.Create("定时轮询自动关机时失败：" + ex.Message);
+                    }
                 }
             }
             timer1.Start();
@@ -101,6 +107,12 @@ namespace FileReceiveService
             {
                 try
                 {
+                    if (timer1 != null)
+                    {
+                        if (timer1.Enabled)
+                            timer1.Stop();
+                        timer1.Dispose();
+                    }
                     bool f = KellFileTransfer.FileUploader.StopReceiveFile(rl);
                     if (!f)
                         Logs.Create("停止监听失败！");
