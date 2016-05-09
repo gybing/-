@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace KellFileTransfer
 {
@@ -162,7 +163,7 @@ namespace KellFileTransfer
                 string receivePath = rl.Directory;
                 if (string.IsNullOrEmpty(receivePath))
                     receivePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
+                
                 TcpListener tcpListen = rl.Listener;
                 string filename = "";
                 try
@@ -231,6 +232,8 @@ namespace KellFileTransfer
                                             fileN[i] = byRead[i];
                                         }
                                         filename = Common.TrimTheNullByte(Encoding.Default.GetString(fileN));
+                                        if (!Common.IsValidFileName(filename))//过滤而已攻击（过滤非文件）
+                                            break;
                                         if (!Directory.Exists(receivePath))
                                             Directory.CreateDirectory(receivePath);
                                         for (int i = 0; i < ReadOneTime - 256; i++)
@@ -372,6 +375,16 @@ namespace KellFileTransfer
                 i++;
             }
             return ret;
+        }
+
+        public static bool IsValidFileName(string filename)
+        {
+            if (!string.IsNullOrEmpty(filename))
+            {
+                Regex regex = new Regex(@"/*|\\*|<|>|\*|\?");
+                return regex.IsMatch(filename);
+            }
+            return false;
         }
 
         public static bool SaveAppSettingConfig(string key, string value, string configPath = null)

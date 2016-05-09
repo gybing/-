@@ -30,7 +30,6 @@ E:\soft\传送文件\传送文件\obj\Debug\传送文件.csproj.GenerateResource
 E:\soft\传送文件\传送文件\obj\Debug\传送文件.exe
 E:\soft\传送文件\传送文件\obj\Debug\传送文件.pdb
 F:\2015\传送文件\传送文件\bin\Debug\传送文件.exe.config
-E:\soft\传送文件\传送文件\obj\Debug\传送文件.csprojResolveAssemblyReference.cache
 F:\2016\传送文件\传送文件\bin\Debug\传送文件.exe.config
 F:\2016\传送文件\传送文件\bin\Debug\传送文件.exe
 F:\2016\传送文件\传送文件\bin\Debug\传送文件.pdb
@@ -43,3 +42,4 @@ F:\2016\传送文件\传送文件\obj\Debug\传送文件.Sender2.resources
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.csproj.GenerateResource.Cache
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.exe
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.pdb
+E:\soft\传送文件\传送文件\obj\Debug\传送文件.csprojResolveAssemblyReference.cache

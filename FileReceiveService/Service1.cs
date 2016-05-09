@@ -23,7 +23,7 @@ namespace FileReceiveService
         protected override void OnStart(string[] args)
         {
             Logs.Create("开始启动监听服务...");
-            timer1 = new Timer(30000);//关机轮询间隔时间为30秒
+            timer1 = new Timer(60000);//关机轮询间隔时间为1分钟
             timer1.Elapsed += new ElapsedEventHandler(timer1_Elapsed);
             timer1.Start();
             IPAddress LocalIP = IPAddress.Loopback;
@@ -82,9 +82,10 @@ namespace FileReceiveService
                                 p.StartInfo.RedirectStandardError = true;
                                 p.StartInfo.CreateNoWindow = true;
                                 p.Start();
-                                p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时候留待取消关机
+                                p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时间留待取消关机
                                 p.Close();
                             }
+                            Logs.Create("自动关机命令执行中...有30秒的时间留待取消关机（取消关机命令：shutdown -a）。");
                         }
                     }
                     catch (Exception ex)

@@ -30,7 +30,6 @@ E:\soft\传送文件\接收文件\bin\Debug\KellFileTransfer.pdb
 E:\soft\传送文件\接收文件\obj\Debug\接收文件.Receiver2.resources
 E:\soft\传送文件\接收文件\bin\Debug\接收文件.exe.config
 F:\2015\传送文件\接收文件\bin\Debug\接收文件.exe.config
-E:\soft\传送文件\接收文件\obj\Debug\接收文件.csprojResolveAssemblyReference.cache
 F:\2016\传送文件\接收文件\bin\Debug\接收文件.exe.config
 F:\2016\传送文件\接收文件\obj\Debug\接收文件.exe
 F:\2016\传送文件\接收文件\obj\Debug\接收文件.pdb
@@ -49,3 +48,4 @@ F:\2016\传送文件\接收文件\obj\Debug\接收文件.csproj.ResolveComRefere
 E:\soft\传送文件\接收文件\obj\Debug\Interop.IWshRuntimeLibrary.dll
 E:\soft\传送文件\接收文件\obj\Debug\接收文件.csproj.ResolveComReference.cache
 E:\soft\传送文件\接收文件\bin\Debug\Interop.IWshRuntimeLibrary.dll
+E:\soft\传送文件\接收文件\obj\Debug\接收文件.csprojResolveAssemblyReference.cache

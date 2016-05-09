@@ -1,0 +1,15 @@
+﻿[15:14:18]服务程序已启动.
+
+[15:14:29]开始监听...
+
+[15:14:34]监听成功！
+
+[15:14:37]应用程序错误:System.Net.Sockets.SocketException: 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 KellFileTransfer.FileUploader.Listen(Object o) 位置 E:\soft\传送文件\FileTransfer\FileTransfer.cs:行号 171
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart(Object obj),应用程序状态：终止
+【出错位置】：E:\soft\传送文件\接收文件\Program.cs : 接收文件, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.接收文件.Program=>CurrentDomain_UnhandledException(102行13列)
+
