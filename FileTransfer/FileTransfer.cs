@@ -379,9 +379,11 @@ namespace KellFileTransfer
 
         public static bool IsValidFileName(string filename)
         {
-            if (!string.IsNullOrEmpty(filename))
+            if (!string.IsNullOrEmpty(filename) && filename.Length <= 260)
             {
-                Regex regex = new Regex(@"/*|\\*|<|>|\*|\?");
+                if (filename.Contains("\r\n"))
+                    return false;
+                Regex regex = new Regex(@"(?<fpath>([a-zA-Z]:\\){0,1}([\s\.\-\w]+\\)*)(?<fname>[\w]+)(?<namext>(\.[\w]+)*)");
                 return regex.IsMatch(filename);
             }
             return false;

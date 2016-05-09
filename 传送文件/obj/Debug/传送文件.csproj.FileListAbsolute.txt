@@ -42,4 +42,3 @@ F:\2016\传送文件\传送文件\obj\Debug\传送文件.Sender2.resources
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.csproj.GenerateResource.Cache
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.exe
 F:\2016\传送文件\传送文件\obj\Debug\传送文件.pdb
-E:\soft\传送文件\传送文件\obj\Debug\传送文件.csprojResolveAssemblyReference.cache
