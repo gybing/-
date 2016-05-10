@@ -7,6 +7,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Net;
 using System.Timers;
+using Microsoft.Win32;
 
 namespace FileReceiveService
 {
@@ -22,6 +23,8 @@ namespace FileReceiveService
 
         protected override void OnStart(string[] args)
         {
+            ////当用户试图重启或关闭系统时发生，但是有了OnShutdown()的重载，就可以免去该操作！
+            //SystemEvents.SessionEnding += new SessionEndingEventHandler(SystemEvents_SessionEnding);
             Logs.Create("开始启动监听服务...");
             timer1 = new Timer(60000);//关机轮询间隔时间为1分钟
             timer1.Elapsed += new ElapsedEventHandler(timer1_Elapsed);
@@ -73,19 +76,31 @@ namespace FileReceiveService
                         if (DateTime.Now.Hour == hour && DateTime.Now.Minute == minute)
                         {
                             Logs.Create("本服务尝试自动关机...");
-                            using (Process p = new Process())
+                            string shutdownWithCmd = KellFileTransfer.Common.GetAppSettingConfig("shutdownWithCmd");
+                            if (!string.IsNullOrEmpty(shutdownWithCmd) && shutdownWithCmd == "1")
                             {
-                                p.StartInfo.FileName = "cmd.exe";
-                                p.StartInfo.UseShellExecute = false;
-                                p.StartInfo.RedirectStandardInput = true;
-                                p.StartInfo.RedirectStandardOutput = true;
-                                p.StartInfo.RedirectStandardError = true;
-                                p.StartInfo.CreateNoWindow = true;
-                                p.Start();
-                                p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时间留待取消关机
-                                p.Close();
+                                using (Process p = new Process())
+                                {
+                                    p.StartInfo.FileName = "cmd.exe";
+                                    p.StartInfo.UseShellExecute = false;
+                                    p.StartInfo.RedirectStandardInput = true;
+                                    p.StartInfo.RedirectStandardOutput = true;
+                                    p.StartInfo.RedirectStandardError = true;
+                                    p.StartInfo.CreateNoWindow = true;
+                                    p.Start();
+                                    p.StandardInput.WriteLine("shutdown -s -f -t 30");//有30秒的时间留待取消关机
+                                    p.Close();
+                                }
+                                Logs.Create("自动关机命令执行中...有30秒的时间留待取消关机（取消关机命令：shutdown -a）。");
                             }
-                            Logs.Create("自动关机命令执行中...有30秒的时间留待取消关机（取消关机命令：shutdown -a）。");
+                            else
+                            {
+                                // 修改 EWX_SHUTDOWN 或者 EWX_LOGOFF, EWX_REBOOT等实现不同得功能。
+                                // 在XP下可以看到帮助信息，以得到不同得参数
+                                // SHUTDOWN /?
+                                Shutdown.DoExitWin(Shutdown.EWX_SHUTDOWN);
+                                Logs.Create("自动关机命令执行中...");
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -130,5 +145,22 @@ namespace FileReceiveService
                 Logs.Create("监听线程尚未启动，无需停止监听，监听服务程序直接退出.");
             }
         }
+
+        protected override void OnShutdown()
+        {
+            Logs.Create("系统正在关机或重启...");
+            OnStop();
+            base.OnShutdown();
+        }
+
+        ////下面是系统关闭事件处理程序
+        //private void SystemEvents_SessionEnding(object sender, SessionEndingEventArgs e)
+        //{
+        //    SessionEndReasons reason = e.Reason;
+        //    if (reason == SessionEndReasons.SystemShutdown)
+        //    {
+        //        this.OnStop();
+        //    }
+        //}
     }
 }
