@@ -29,3 +29,4 @@ F:\2015\传送文件\DownloadServer\obj\x86\Debug\DownloadServerApp.DownloadServ
 F:\2015\传送文件\DownloadServer\obj\x86\Debug\DownloadServerApp.Properties.Resources.resources
 F:\2015\传送文件\DownloadServer\obj\x86\Debug\DownloadServerApp.csproj.GenerateResource.Cache
 E:\soft\传送文件\DownloadServer\bin\Debug\DownloadServerApp.exe.config
+E:\soft\传送文件\DownloadServer\obj\x86\Debug\DownloadServerApp.csprojResolveAssemblyReference.cache

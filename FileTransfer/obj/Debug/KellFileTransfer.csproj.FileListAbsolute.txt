@@ -6,4 +6,3 @@ E:\soft\传送文件\FileTransfer\bin\Debug\KellFileTransfer.dll
 E:\soft\传送文件\FileTransfer\bin\Debug\KellFileTransfer.pdb
 E:\soft\传送文件\FileTransfer\obj\Debug\KellFileTransfer.dll
 E:\soft\传送文件\FileTransfer\obj\Debug\KellFileTransfer.pdb
-E:\soft\传送文件\FileTransfer\obj\Debug\KellFileTransfer.csprojResolveAssemblyReference.cache

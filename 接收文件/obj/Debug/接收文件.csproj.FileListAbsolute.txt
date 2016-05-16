@@ -48,3 +48,4 @@ F:\2016\传送文件\接收文件\obj\Debug\接收文件.csproj.ResolveComRefere
 E:\soft\传送文件\接收文件\obj\Debug\Interop.IWshRuntimeLibrary.dll
 E:\soft\传送文件\接收文件\obj\Debug\接收文件.csproj.ResolveComReference.cache
 E:\soft\传送文件\接收文件\bin\Debug\Interop.IWshRuntimeLibrary.dll
+E:\soft\传送文件\接收文件\obj\Debug\接收文件.csprojResolveAssemblyReference.cache

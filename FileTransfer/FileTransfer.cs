@@ -97,10 +97,10 @@ namespace KellFileTransfer
                 socket.SendFile(sendFile, fileName, null, TransmitFileOptions.UseDefaultWorkerThread);
                 return true;
             }
-            catch// (Exception e)
+            catch (Exception e)
             {
-                return false;
-                //throw e;
+                //return false;
+                throw e;
             }
             finally
             {
@@ -130,10 +130,10 @@ namespace KellFileTransfer
                 socket.SendFile(sendFile, fileName, null, TransmitFileOptions.UseDefaultWorkerThread);
                 return true;
             }
-            catch// (Exception e)
+            catch (Exception e)
             {
-                return false;
-                //throw e;
+                //return false;
+                throw e;
             }
             finally
             {

@@ -291,7 +291,8 @@ namespace 接收文件
                     }
                     catch (Exception e)
                     {
-                        CreateShortcut(executablePath, Environment.GetFolderPath(Environment.SpecialFolder.Startup));
+                        if (!IsAutoStartupCurrentUser(filename))
+                            CreateShortcut(executablePath, Environment.GetFolderPath(Environment.SpecialFolder.Startup));
                     }
                 }
                 else if (!IsAutoStartupCurrentUser(filename))
