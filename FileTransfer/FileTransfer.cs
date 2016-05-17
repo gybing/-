@@ -202,7 +202,7 @@ namespace KellFileTransfer
                                         string fileName = Path.GetFileName(fullpath);
                                         string FilePath = fullpath.Substring(0, fullpath.Length - fileName.Length);
                                         if (FilePath.EndsWith("\\"))
-                                            FilePath = FilePath.Substring(0, FilePath.Length-1);
+                                            FilePath = FilePath.Substring(0, FilePath.Length - 1);
                                         if (!Directory.Exists(FilePath))
                                             Directory.CreateDirectory(FilePath);
                                         using (FileStream fs = new FileStream(fullpath, FileMode.OpenOrCreate, FileAccess.Write))
@@ -233,7 +233,10 @@ namespace KellFileTransfer
                                         }
                                         filename = Common.TrimTheNullByte(Encoding.Default.GetString(fileN));
                                         if (!Common.IsValidFileName(filename))//过滤而已攻击（过滤非文件）
+                                        {
+                                            Logs.Create("非文件攻击：" + Environment.NewLine + filename);
                                             break;
+                                        }
                                         if (!Directory.Exists(receivePath))
                                             Directory.CreateDirectory(receivePath);
                                         for (int i = 0; i < ReadOneTime - 256; i++)
@@ -253,6 +256,7 @@ namespace KellFileTransfer
                 }
                 catch (System.Security.SecurityException ex)
                 {
+                    Logs.Create("监听时[" + ((IPEndPoint)tcpListen.LocalEndpoint).ToString() + "]出现异常：" + Environment.NewLine + ex.Message);
                     throw ex;
                 }
             }
@@ -2188,6 +2192,31 @@ namespace KellFileTransfer
             this.fileList = fileList;
             this.host = host;
             this.port = port;
+        }
+    }
+    
+    public static class Logs
+    {
+        private static string logPath = AppDomain.CurrentDomain.BaseDirectory + "Logs";
+        public static void Create(string msg, string errPoint = null)
+        {
+            if (!string.IsNullOrEmpty(errPoint))
+                msg += Environment.NewLine + "【出错位置】：" + errPoint;
+            DateTime now = DateTime.Now;
+            try
+            {
+                if (!Directory.Exists(logPath))
+                    Directory.CreateDirectory(logPath);
+                string path = logPath + "\\" + now.ToString("yyyy-MM-dd") + ".log";
+                File.AppendAllText(path, "[" + now.TimeOfDay.Hours.ToString().PadLeft(2, '0') + ":" + now.TimeOfDay.Minutes.ToString().PadLeft(2, '0') + ":" + now.TimeOfDay.Seconds.ToString().PadLeft(2, '0') + "]" + msg + Environment.NewLine + Environment.NewLine, Encoding.UTF8);
+            }
+            catch
+            {
+                if (!Directory.Exists("d:\\Logs"))
+                    Directory.CreateDirectory("d:\\Logs");
+                string path = "d:\\Logs\\" + now.ToString("yyyy-MM-dd") + ".log";
+                File.AppendAllText(path, "[" + now.TimeOfDay.Hours.ToString().PadLeft(2, '0') + ":" + now.TimeOfDay.Minutes.ToString().PadLeft(2, '0') + ":" + now.TimeOfDay.Seconds.ToString().PadLeft(2, '0') + "]" + msg + Environment.NewLine + Environment.NewLine, Encoding.UTF8);
+            }
         }
     }
 }
